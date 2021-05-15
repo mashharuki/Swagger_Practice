@@ -1,0 +1,250 @@
+swagger: '2.0'
+
+# モックのメタデータを記述する(説明など)
+info:
+  # 説明文
+  description: |
+    フレームワーク「Swagger」を理解するためのサンプル例です。
+  # バージョン情報
+  version: 1.0.0
+  # APIのタイトル
+  title: Swagger Sample
+  # ライセンス情報
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# ポート番号の設定
+host: localhost:10010
+
+# モックサーバーのプロトコルの選択
+schemes:
+  - http
+  - https
+  - ws
+  - wss
+
+# エンドポイントの記述
+paths:
+  # パス情報
+  /pet/{petId}:
+    # GETメソッド
+    get:
+      tags:
+        - pet
+      # APIの概要
+      summary: IDに紐づくペットの情報を取得する
+      # APIの説明
+      description: IDにペット情報を取得するAPI。ID,category,name,photoUrls,tags,statusを取得できる。
+      # ID情報
+      operationId: petId
+      # アウトプットの形式情報
+      produces:
+        - application/json
+        - text/plain; charset=utf-8
+        - application/vnd.github+json
+        - application/vnd.github.v3+json
+        - application/vnd.github.v3.raw+json
+        - application/vnd.github.v3.text+json
+        - application/vnd.github.v3.html+json
+        - application/vnd.github.v3.full+json
+        - application/vnd.github.v3.diff
+        - application/vnd.github.v3.patch
+      # パラメータ情報
+      parameters:
+        - name: petId
+          in: path
+          description: ペットIDを入力する。
+          required: true
+          type: integer
+          format: int64
+      # httpステータス毎に出力内容を設定する。
+      responses:
+        200:
+          description: API操作成功！
+          schema:
+            # モデルの定義からレスポンスの例を貼り付ける！
+            $ref: '#/definitions/Pet'
+        400:
+          description: API操作失敗...
+        404:
+          description: 指定されたパスでAPIが見つかりませんでした。
+ 
+  # パス情報
+  /pet_post/{petId}:         
+    # POST メソッド
+    post:
+      tags:
+        - pet
+      # APIの概要
+      summary: IDに紐づくペットの情報を取得する
+      # APIの説明
+      description: IDにペット情報を取得するAPI。ID,category,name,photoUrls,tags,statusを取得できる。
+      # ID情報
+      operationId: petId2
+      # アウトプットの形式情報
+      produces:
+        - application/json
+        - text/plain; charset=utf-8
+        - application/vnd.github+json
+        - application/vnd.github.v3+json
+        - application/vnd.github.v3.raw+json
+        - application/vnd.github.v3.text+json
+        - application/vnd.github.v3.html+json
+        - application/vnd.github.v3.full+json
+        - application/vnd.github.v3.diff
+        - application/vnd.github.v3.patch
+      # パラメータ情報
+      parameters:
+        - name: petId
+          in: path
+          description: ペットIDを入力する。
+          required: true
+          type: integer
+          format: int64
+      # httpステータス毎に出力内容を設定する。
+      responses:
+        200:
+          description: API操作成功！
+          schema:
+            # モデルの定義からレスポンスの例を貼り付ける！
+            $ref: '#/definitions/Pet'
+        400:
+          description: API操作失敗...
+        404:
+          description: 指定されたパスでAPIが見つかりませんでした。
+  
+  # パス情報
+  /pet_put/{petId}:         
+    # PUT メソッド
+    put:
+      tags:
+        - pet
+      # APIの概要
+      summary: IDに紐づくペットの情報を取得する
+      # APIの説明
+      description: IDにペット情報を取得するAPI。ID,category,name,photoUrls,tags,statusを取得できる。
+      # ID情報
+      operationId: petId3
+      # アウトプットの形式情報
+      produces:
+        - application/json
+        - text/plain; charset=utf-8
+        - application/vnd.github+json
+        - application/vnd.github.v3+json
+        - application/vnd.github.v3.raw+json
+        - application/vnd.github.v3.text+json
+        - application/vnd.github.v3.html+json
+        - application/vnd.github.v3.full+json
+        - application/vnd.github.v3.diff
+        - application/vnd.github.v3.patch
+      # パラメータ情報
+      parameters:
+        - name: petId
+          in: path
+          description: ペットIDを入力する。
+          required: true
+          type: integer
+          format: int64
+      # httpステータス毎に出力内容を設定する。
+      responses:
+        200:
+          description: API操作成功！
+          schema:
+            # モデルの定義からレスポンスの例を貼り付ける！
+            $ref: '#/definitions/Pet'
+        400:
+          description: API操作失敗...
+        404:
+          description: 指定されたパスでAPIが見つかりませんでした。
+  
+  # パス情報
+  /pet_delete/{petId}:         
+    # DELETEメソッド
+    delete:
+      tags:
+        - pet
+      # APIの概要
+      summary: IDに紐づくペットの情報を削除する
+      # APIの説明
+      description: IDにペット情報を削除するAPI。
+      # ID情報
+      operationId: petId4
+      # パラメータ情報
+      parameters:
+        - name: petId
+          in: path
+          description: ペットIDを入力する。
+          required: true
+          type: integer
+          format: int64
+      # httpステータス毎に出力内容を設定する。
+      responses:
+        200:
+          description: API操作成功！
+        400:
+          description: API操作失敗...
+        404:
+          description: 指定されたパスでAPIが見つかりませんでした。
+
+# モデル定義の記述
+definitions:
+  # Categoryモデルの定義
+  Category:
+    # 種類を指定
+    type: object
+    # モデルの詳細定義
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+  # Tagモデルの定義
+  Tag:
+    # 種類を指定
+    type: object
+    # モデルの詳細定義
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+
+  # Petモデルの定義
+  Pet:
+    # 種類を指定
+    type: object
+    # 必須事項
+    required:
+      - name
+      - photoUrls
+    # モデルの詳細定義(この場合は、ID,category,name,photoUrls,tags,statusを返すのでそれぞれの詳細な情報を定義する。)
+    properties:
+      id:
+        type: integer
+        format: int64
+      category:
+        # Categoryの定義を引っ張ってくる！
+        $ref: '#/definitions/Category'
+      name:
+        type: string
+        # 各値の例の記述
+        example: doggie
+      photoUrls:
+        type: array
+        items:
+          type: string
+      tags:
+        type: array
+        items:
+          $ref: '#/definitions/Tag'
+      status:
+        type: string
+        description: ペットショップにいる動物達の状態
+        # enum型変数を定義する。
+        enum:
+          - available
+          - pending
+          - sold
