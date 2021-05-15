@@ -115,44 +115,53 @@ paths:
           description: 指定されたパスでAPIが見つかりませんでした。
   
   # パス情報
-  /pet_put/{petId}:         
+  /pet_put/{name}/{category}/{photoUrls}/{tags}/{status}:         
     # PUT メソッド
     put:
       tags:
         - pet
       # APIの概要
-      summary: IDに紐づくペットの情報を取得する
+      summary: ペットの情報を新しく生成する
       # APIの説明
-      description: IDにペット情報を取得するAPI。ID,category,name,photoUrls,tags,statusを取得できる。
+      description: ペットの情報を生成するAPI。
       # ID情報
       operationId: petId3
-      # アウトプットの形式情報
-      produces:
-        - application/json
-        - text/plain; charset=utf-8
-        - application/vnd.github+json
-        - application/vnd.github.v3+json
-        - application/vnd.github.v3.raw+json
-        - application/vnd.github.v3.text+json
-        - application/vnd.github.v3.html+json
-        - application/vnd.github.v3.full+json
-        - application/vnd.github.v3.diff
-        - application/vnd.github.v3.patch
       # パラメータ情報
       parameters:
-        - name: petId
+        - name: name
           in: path
-          description: ペットIDを入力する。
+          description: 名前
+          required: true
+          type: string
+          format: string
+        - name: category
+          in: path
+          description: カテゴリー
           required: true
           type: integer
           format: int64
+        - name: photoUrls
+          in: path
+          description: 画像のURL。
+          required: true
+          type: string
+          format: uft-8
+        - name: tags
+          in: path
+          description: タグ情報。
+          required: true
+          type: string
+          format: utf-8
+        - name: status
+          in: path
+          description: ステータス
+          required: true
+          type: string
+          format: utf-8
       # httpステータス毎に出力内容を設定する。
       responses:
         200:
           description: API操作成功！
-          schema:
-            # モデルの定義からレスポンスの例を貼り付ける！
-            $ref: '#/definitions/Pet'
         400:
           description: API操作失敗...
         404:
